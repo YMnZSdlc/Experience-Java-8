@@ -3,7 +3,9 @@ package academy.elqoo.java8.stream;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -61,17 +63,23 @@ public class Stream8 {
     }
 
     public static List<String> getFirstNames(List<String> names) {
-//        return names.stream().map();
-        throw new NotImplementedException();
+        return names.stream()
+                .map(n -> n.split(" ")[0])
+                .collect(toList());
     }
 
     public static List<String> getDistinctLetters(List<String> names) {
-        throw new NotImplementedException();
+        return names.stream()
+                .flatMap(m -> Stream.of(m.split("")))
+                .distinct()
+                .collect(toList());
     }
 
 
     public static String separateNamesByComma(List<User> users) {
-        throw new NotImplementedException();
+        return users.stream()
+                .map(u -> u.getName())
+                .collect(Collectors.joining(", "));
     }
 
     public static double getAverageAge(List<User> users) {
