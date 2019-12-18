@@ -3,8 +3,10 @@ package academy.elqoo.java8.stream;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.IntSummaryStatistics;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -83,15 +85,23 @@ public class Stream8 {
     }
 
     public static double getAverageAge(List<User> users) {
-        throw new NotImplementedException();
+        return users.stream()
+                .mapToDouble(u -> u.getAge())
+                .average()
+                .getAsDouble();
     }
 
     public static Integer getMaxAge(List<User> users) {
-        throw new NotImplementedException();
+        return users.stream()
+                .mapToInt(u -> u.getAge())
+                .max().getAsInt();
+//                .max(Comparator.comparingInt(u -> u.getAge())).get();
     }
 
     public static Integer getMinAge(List<User> users) {
-        throw new NotImplementedException();
+        return users.stream()
+                .mapToInt(u -> u.getAge())
+                .min().getAsInt();
     }
 
     public static Map<Boolean, List<User>> partionUsersByGender(List<User> users) {
