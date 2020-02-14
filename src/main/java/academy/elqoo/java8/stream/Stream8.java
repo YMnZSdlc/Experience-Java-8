@@ -3,15 +3,12 @@ package academy.elqoo.java8.stream;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.*;
 
 public class Stream8 {
 
@@ -105,7 +102,9 @@ public class Stream8 {
     }
 
     public static Map<Boolean, List<User>> partionUsersByGender(List<User> users) {
-        throw new NotImplementedException();
+        return users.stream().collect(partitioningBy(u -> u.isMale()));
+
+
     }
 
     public static Map<Integer, List<User>> groupByAge(List<User> users) {
