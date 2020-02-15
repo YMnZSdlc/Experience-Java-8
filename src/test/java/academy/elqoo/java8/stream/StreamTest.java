@@ -166,7 +166,7 @@ public class StreamTest {
     @Test
     public void shouldNoneMatchAge(){
         List<User> users = User.getUsersWithAge(10, 20, 30);
-        assertTrue(Stream8.noneMatch(users, 40));
+        assertTrue(Stream8.noneMatch(users, 15));
     }
 
     @Test

@@ -20,13 +20,13 @@ public class Stream8 {
 
     public static List<Integer> getAgeFromUsers(List<User> user) {
         return user.stream()
-                .map(u -> u.getAge())
+                .map(User::getAge)
                 .collect(toList());
     }
 
     public static List<Integer> getDistinctAges(List<User> users) {
         return users.stream()
-                .map(u -> u.getAge())
+                .map(User::getAge)
                 .distinct()
                 .collect(toList());
     }
@@ -45,13 +45,13 @@ public class Stream8 {
 
     public static List<String> mapToUpperCase(List<String> strings) {
         return strings.stream()
-                .map(e -> e.toUpperCase())
+                .map(String::toUpperCase)
                 .collect(toList());
     }
 
     public static Integer sum(List<Integer> integers) {
         return integers.stream()
-                .mapToInt(i -> i.intValue())
+                .mapToInt(i -> i)
                 .sum();
     }
 
@@ -77,41 +77,48 @@ public class Stream8 {
 
     public static String separateNamesByComma(List<User> users) {
         return users.stream()
-                .map(u -> u.getName())
+                .map(User::getName)
                 .collect(Collectors.joining(", "));
     }
 
     public static double getAverageAge(List<User> users) {
         return users.stream()
-                .mapToDouble(u -> u.getAge())
+                .mapToDouble(User::getAge)
                 .average()
                 .getAsDouble();
     }
 
     public static Integer getMaxAge(List<User> users) {
         return users.stream()
-                .mapToInt(u -> u.getAge())
+                .mapToInt(User::getAge)
                 .max().getAsInt();
 //                .max(Comparator.comparingInt(u -> u.getAge())).get();
     }
 
     public static Integer getMinAge(List<User> users) {
         return users.stream()
-                .mapToInt(u -> u.getAge())
+                .mapToInt(User::getAge)
                 .min().getAsInt();
     }
 
     public static Map<Boolean, List<User>> partionUsersByGender(List<User> users) {
+<<<<<<< Updated upstream
         return users.stream().collect(partitioningBy(u -> u.isMale()));
 
 
+=======
+        return users.stream()
+                .collect(partitioningBy(User::isMale));
+>>>>>>> Stashed changes
     }
 
     public static Map<Integer, List<User>> groupByAge(List<User> users) {
-        throw new NotImplementedException();
+        return users.stream()
+                .collect(groupingBy(User::getAge));
     }
 
     public static Map<Boolean, Map<Integer, List<User>>> groupByGenderAndAge(List<User> users) {
+//        return users.stream().collect(groupB);
         throw new NotImplementedException();
     }
 
@@ -120,19 +127,25 @@ public class Stream8 {
     }
 
     public static boolean anyMatch(List<User> users, int age) {
-        throw new NotImplementedException();
+        return users.stream()
+                .anyMatch(u -> u.getAge().equals(age));
     }
 
     public static boolean noneMatch(List<User> users, int age) {
-        throw new NotImplementedException();
+        return users.stream()
+                .noneMatch(u -> u.getAge().equals(age));
     }
 
     public static Optional<User> findAny(List<User> users, String name) {
-        throw new NotImplementedException();
+        return users.stream()
+                .filter(u -> u.getName().equals(name))
+                .findAny();
     }
 
     public static List<User> sortByAge(List<User> users) {
-        throw new NotImplementedException();
+        return users.stream()
+                .sorted(Comparator.comparing(User::getAge))
+                .collect(toList());
     }
 
     public static Stream<Integer> getBoxedStream(IntStream stream) {
